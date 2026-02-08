@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+        body {
+            font-family: 'Varela Round', sans-serif;
+            background-color: #E3F2FD; /* Rosa claro */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Para que no haya scroll cuando el botón crezca */
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #d81b60;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .gif-container img {
+            width: 200px;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        button {
+            font-family: 'Varela Round', sans-serif;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        #yesBtn {
+            background-color: #4CAF50; /* Verde esperanza */
+            color: white;
+            font-size: 1.2rem;
+            padding: 15px 30px;
+        }
+
+        #noBtn {
+            background-color: #f44336; /* Rojo peligro */
+            color: white;
+            font-size: 1.2rem;
+            padding: 15px 30px;
+        }
+
+        /* Estilo para el mensaje final */
+        .hidden {
+            display: none;
+        }
+        
+        #message-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container" id="question-container">
+        <div class="gif-container">
+            <img src="https://media.tenor.com/-zIxOFXGvJ4AAAAC/chiikawa.gif" alt="Chiikawa">
+        </div>
+        <h1>Serias mi San Valentin?</h1>
+        
+        <div class="buttons">
+            <button id="yesBtn">Sí</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <div id="message-container">
+        <div class="gif-container">
+            <img src="https://preview.redd.it/i-love-how-rabbit-y-usagi-is-v0-dx0nwj6b4wwe1.gif?width=400&auto=webp&s=9956033f86c6a9039340d0573f9a5f1b57dc9ab4" alt="Usagi">
+        </div>
+        <h1>Gud boy, sabia que dirias que si JEKEKEJS🩵</h1>
+        <p>Gracias por elegirme a mi <3 (ÑIAAAAA) </p>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const questionContainer = document.getElementById('question-container');
+        const messageContainer = document.getElementById('message-container');
+
+        // Textos para el botón "No" cuando intentan presionarlo
+        const noTexts = [
+            "¿TAS SEGURA?",
+            "¡Pensalaaa!",
+            "¿M vas a romper el cocoro💔?",
+            "¡Ve q lloro!",
+            "¡ANIIIIII!",
+            "¡PORFAAA!",
+            "¡DI QUE SI!",
+            "💔💔💔"
+        ];
+
+        let clickCount = 0;
+
+        noBtn.addEventListener('click', () => {
+            clickCount++;
+            
+            // Hacer crecer el botón Sí
+            const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+            const currentPadding = parseFloat(window.getComputedStyle(yesBtn).padding);
+            
+            yesBtn.style.fontSize = `${currentSize * 1.4}px`;
+            yesBtn.style.padding = `${currentPadding}px ${currentPadding * 1.2}px`; 
+
+            // Cambiar el texto del botón No
+            if (clickCount < noTexts.length) {
+                noBtn.innerText = noTexts[clickCount];
+            } else {
+                noBtn.innerText = "¡Ya di que sí!";
+            }
+        });
+
+        yesBtn.addEventListener('click', () => {
+            questionContainer.style.display = 'none'; // Ocultar pregunta
+            messageContainer.style.display = 'flex'; // Mostrar celebración
+        });
+    </script>
+
+</body>
+</html>
