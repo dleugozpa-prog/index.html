@@ -155,6 +155,15 @@
             messageContainer.style.display = 'flex'; // Mostrar celebración
         });
     </script>
-
+<audio id="musicaChiikawa" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+    <script>
+  document.addEventListener('click', function() {
+    var audio = document.getElementById('musicaChiikawa');
+    audio.play();
+  }, { once: true });
+    </script>
+    
 </body>
 </html>
