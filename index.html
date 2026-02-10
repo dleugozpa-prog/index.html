@@ -119,6 +119,23 @@
     border-radius: 15px;
     background-color: transparent; /* Asegura que parezca sticker */
         }
+/* Estilo para los corazones de fondo */
+.heart-bg {
+    position: absolute;
+    color: #90CAF9; /* Celeste un poco más oscuro que el fondo */
+    font-size: 20px;
+    user-select: none;
+    pointer-events: none;
+    z-index: 1; /* Asegúrate de que tu contenido tenga un z-index mayor a 1 */
+    animation: moveUp 4s linear infinite;
+    top: 100vh;
+}
+
+@keyframes moveUp {
+    0% { transform: translateY(0) scale(0); opacity: 0; }
+    50% { opacity: 0.6; }
+    100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+}
     </style>
 </head>
 <div class="contenedor-hachiware">
@@ -223,6 +240,28 @@
             messageContainer.style.display = 'flex'; 
             createHearts(); // <--- ESTO ES LO MÁS IMPORTANTE
         });
+// Generador de corazones flotantes
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart-bg');
+    heart.innerHTML = '❤'; 
+    
+    // Posición horizontal aleatoria
+    heart.style.left = Math.random() * 100 + "vw";
+    
+    // Velocidad aleatoria para que no suban todos iguales
+    heart.style.animationDuration = Math.random() * 2 + 3 + "s"; 
+    
+    document.body.appendChild(heart);
+
+    // Los elimina después de que termina la animación para no saturar la RAM
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+// Crea un corazón cada 300ms (puedes subir el número para que haya menos)
+setInterval(createHeart, 300);
     </script>
     
 </body>
