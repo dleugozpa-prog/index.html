@@ -104,9 +104,27 @@
                 transform: translateY(110vh) rotate(360deg);
             }
         }
+.contenedor-hachiware {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto; /* Centrado con margen pequeño para no tocar bordes */
+    width: fit-content; /* El contenedor solo mide lo que mide la imagen */
+}
+
+.gif-hachiware {
+    width: 80px; /* Tamaño pequeño tipo sticker */
+    height: 80px; /* Forzamos que sea cuadrado */
+    object-fit: contain; /* Evita que la imagen se deforme al ser cuadrada */
+    border-radius: 10px;
+    background-color: transparent; /* Asegura que parezca sticker */
+        }
     </style>
 </head>
-<body>
+<div class="contenedor-hachiware">
+    <img src="https://media1.tenor.com/m/46Ziq3F6I04AAAAd/chiikawa-hachiware.gif" class="gif-hachiware">
+</div>
+    <body>
 
     <div class="container" id="question-container">
         <div class="gif-container">
