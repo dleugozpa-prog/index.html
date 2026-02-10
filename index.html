@@ -88,6 +88,22 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+         /* ESTILOS PARA LA LLUVIA DE CORAZONES */
+        .heart {
+            position: fixed;
+            top: -10vh;
+            font-size: 2rem;
+            color: #81D4FA; /* Celeste */
+            user-select: none;
+            z-index: 1000;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body>
@@ -163,6 +179,32 @@
     var audio = document.getElementById('musicaChiikawa');
     audio.play();
   }, { once: true });
+            // 1. Función para crear la lluvia de corazones
+        function createHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '🩵'; 
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                heart.style.opacity = Math.random();
+                
+                document.body.appendChild(heart);
+
+                // Borrar el corazón después de que caiga para no saturar la página
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }, 150);
+        }
+
+        // 2. Modificación del botón SÍ para que active la lluvia
+        // Busca si ya tienes un yesBtn.addEventListener y asegúrate de que incluya "createHearts();"
+        yesBtn.addEventListener('click', () => {
+            questionContainer.style.display = 'none'; 
+            messageContainer.style.display = 'flex'; 
+            createHearts(); // <--- ESTO ES LO MÁS IMPORTANTE
+        });
     </script>
     
 </body>
